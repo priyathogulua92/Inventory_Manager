@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>INVENTORY MANAGER</title>
+  </head>
+  <body>
+    <div>
+      <div class="shop_details">
+        <h1>SRI AISHWARYA TRADER</h1>
+        <h3>HOME APPLIANCES AND FURNITURES</h3>
+        <p>8/458, Perumal Kovil Street, Paramakudi</p>
+      </div>
+      <div class="shop_contact">
+        <h4>GSTIN : 33AWIPG1697D2ZN</h4>
+        <h4>Cell : 9894680330</h4>
+      </div>
+    </div>
+    <hr />
+    <div class="invoice">
+      <a href="/invoice"><h2>INVOICE</h2></a>
+    </div>
+
+    <div class="sales">
+      <a href="/sales"><h2>SALES</h2></a>
+    </div>
+
+    <div class="inventory">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
+    </div>
+    <hr />
+    <div>
+      <div class="col-md-offset-0 col-md-3">
+        <form method="post" autocomplete="on">
+          {%csrf_token%}
+          <h3 class="page-header text-primary text-center">Add Sales</h3>
+          <div class="form-group">
+            <label>Customer Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Cust_name"
+              maxlenght="50"
+            />
+          </div>
+          <div class="form-group">
+            <label>Date</label>
+            <input
+              type="date"
+              class="form-control"
+              name="Date"
+              maxlenght="10"
+            />
+          </div>
+          <div class="form-group">
+            <label>Brand Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Brand_name"
+              maxlenght="20"
+            />
+          </div>
+          <div class="form-group">
+            <label>Product</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Product"
+              maxlenght="20"
+            />
+          </div>
+          <div class="form-group">
+            <label>Model Name</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Model_name"
+              maxlenght="20"
+            />
+          </div>
+          <div class="form-group">
+            <label>Price</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Price"
+              maxlenght="5"
+            />
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input
+              type="text"
+              class="form-control"
+              name="Quantity"
+              maxlenght="2"
+            />
+          </div>
+          <div class="form-group pull-right">
+            <input type="submit" value="Order" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div>
+      {% if error %}
+      <div class="error1">ERROR: {{error}}</div>
+      {% endif %}
+      <div class="col-md-7">
+        {% if sales_list %}
+        <h3 class="page-header text-primary text-center">Sales List</h3>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th><h4>CUSTOMER_NAME</h4></th>
+              <th><h4>DATE</h4></th>
+              <th><h4>BRAND_NAME</h4></th>
+              <th><h4>PRODUCT</h4></th>
+              <th><h4>MODEL_NAME</h4></th>
+              <th><h4>PRICE</h4></th>
+              <th><h4>QUANTITY</h4></th>
+              <th><h4>AMOUNT</h4></th>
+            </tr>
+          </thead>
+          {% for instance in sales_list %}
+          <tbody>
+            <tr>
+              <td>{{instance.customer_name}}</td>
+              <td>{{instance.date}}</td>
+              <td>{{instance.brand_name}}</td>
+              <td>{{instance.product}}</td>
+              <td>{{instance.model_Name}}</td>
+              <td>{{instance.price}}</td>
+              <td>{{instance.quantity}}</td>
+              <td>{{instance.amount}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

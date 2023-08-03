@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>INVENTORY MANAGER</title>
+  </head>
+  <body>
+    <div>
+      <div class="shop_details">
+        <h1>SRI AISHWARYA TRADER</h1>
+        <h3>HOME APPLIANCES AND FURNITURES</h3>
+        <p>8/458, Perumal Kovil Street, Paramakudi</p>
+      </div>
+      <div class="shop_contact">
+        <h4>GSTIN : 33AWIPG1697D2ZN</h4>
+        <h4>Cell : 9894680330</h4>
+      </div>
+    </div>
+    <hr />
+    <div class="invoice">
+      <a href="/invoice"><h2>INVOICE</h2></a>
+    </div>
+
+    <div class="sales">
+      <a href="/sales"><h2>SALES</h2></a>
+    </div>
+
+    <div class="inventory">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
+    </div>
+    <hr />
+    <div>
+      <div class="col-md-offset-0 col-md-3">
+        <form action="/inventory" method="GET" autocomplete="on">
+          {% csrf_token %}
+          <h3 class="page-header text-primary text-center">Search Inventry</h3>
+          <div class="form-group">
+            <label>BRAND</label>
+            <input type="text" class="form-control" name="BRAND" />
+          </div>
+          <div class="form-group">
+            <label>PRODUCT</label>
+            <input type="text" class="form-control" name="PRODUCT" />
+          </div>
+          <div class="form-group">
+            <label>MODEL</label>
+            <input type="text" class="form-control" name="MODEL" />
+          </div>
+          <div class="form-group pull-right">
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div class="col-md-7">
+        {% if inventoryData %}
+        <h3 class="page-header text-primary text-center">Inventory List</h3>
+        <table class="'table table-bordered">
+          <thead>
+            <tr>
+              <th><h4>BRAND</h4></th>
+              <th><h4>PRODUCT</h4></th>
+              <th><h4>MODEL</h4></th>
+              <th><h4>PRICE</h4></th>
+              <th><h4>QUANTITY</h4></th>
+            </tr>
+          </thead>
+          {% for data in inventoryData %}
+          <tbody>
+            <tr>
+              <td>{{data.brand}}</td>
+              <td>{{data.product}}</td>
+              <td>{{data.model}}</td>
+              <td>{{data.price}}</td>
+              <td>{{data.quantity}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

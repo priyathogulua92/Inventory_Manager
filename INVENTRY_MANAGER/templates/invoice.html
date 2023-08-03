@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link
+      rel="stylesheet"
+      href="{% static 'bootstrap/css/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>INVENTORY MANAGER</title>
+  </head>
+  <body>
+    <div>
+      <div class="shop_details">
+        <h1>SRI AISHWARYA TRADER</h1>
+        <h3>HOME APPLIANCES AND FURNITURES</h3>
+        <p>8/458, Perumal Kovil Street, Paramakudi</p>
+      </div>
+      <div class="shop_contact">
+        <h4>GSTIN : 33AWIPG1697D2ZN</h4>
+        <h4>Cell : 9894680330</h4>
+      </div>
+    </div>
+    <hr />
+    <div class="invoice">
+      <a href="/invoice"><h2>INVOICE</h2></a>
+    </div>
+
+    <div class="sales">
+      <a href="/sales"><h2>SALES</h2></a>
+    </div>
+
+    <div class="inventory">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
+    </div>
+    <hr />
+    <div>
+      <div class="col-md-offset-0 col-md-3">
+        <form action="/invoice/" method="POST" autocomplete="on">
+          {% csrf_token %}
+          <h3 class="page-header text-primary text-center">Add Invoice</h3>
+          <div class="form-group">
+            <label>COMPANY_NAME</label>
+            <input type="text" class="form-control" name="COMPANY_NAME" />
+          </div>
+          <div class="form-group">
+            <label>BILL_NUMBER</label>
+            <input type="text" class="form-control" name="BILL_NUMBER" />
+          </div>
+          <div class="form-group">
+            <label>DATE</label>
+            <input type="date" class="form-control" name="DATE" />
+          </div>
+          <div class="form-group">
+            <label>BRAND</label>
+            <input type="text" class="form-control" name="BRAND" />
+          </div>
+          <div class="form-group">
+            <label>PRODUCT</label>
+            <input type="text" class="form-control" name="PRODUCT" />
+          </div>
+          <div class="form-group">
+            <label>MODEL</label>
+            <input type="text" class="form-control" name="MODEL" />
+          </div>
+          <div class="form-group">
+            <label>PRICE</label>
+            <input type="number" class="form-control" name="PRICE" />
+          </div>
+          <div class="form-group">
+            <label>QUANTITY</label>
+            <input type="number" class="form-control" name="QUANTITY" />
+          </div>
+          <div class="form-group pull-right">
+            <input type="submit" value="Register" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger" />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div>
+      <div class="col-md-7">
+        {% if invoice_list %}
+        <h3 class="page-header text-primary text-center">Invoice List</h3>
+        <table class="'table table-bordered">
+          <thead>
+            <tr>
+              <th><h4>COMPANY_NAME</h4></th>
+              <th><h4>BILL_NUMBER</h4></th>
+              <th><h4>DATE</h4></th>
+              <th><h4>BRAND</h4></th>
+              <th><h4>PRODUCT</h4></th>
+              <th><h4>MODEL</h4></th>
+              <th><h4>PRICE</h4></th>
+              <th><h4>QUANTITY</h4></th>
+              <th><h4>AMOUNT</h4></th>
+            </tr>
+          </thead>
+          {% for data in invoice_list %}
+          <tbody>
+            <tr>
+              <td>{{data.company_name}}</td>
+              <td>{{data.bill_number}}</td>
+              <td>{{data.date}}</td>
+              <td>{{data.brand}}</td>
+              <td>{{data.product}}</td>
+              <td>{{data.model}}</td>
+              <td>{{data.price}}</td>
+              <td>{{data.quantity}}</td>
+              <td>{{data.amount}}</td>
+            </tr>
+          </tbody>
+          {% endfor %}
+        </table>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

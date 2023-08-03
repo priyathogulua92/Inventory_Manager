@@ -1,0 +1,88 @@
+h1{
+    color: #2178c5;
+    
+}
+
+p{
+    color: #2178c5;
+}
+
+h3{
+    color: #2178c5;
+}
+
+h4{
+    color: #2178c5;
+}
+
+h2{
+    color: #2178c5;
+}
+
+.shop_details{
+    float: left;
+    height: 160px;
+    width: 80%;
+    background-color: #f4f6f9;
+}
+
+.shop_contact{
+    float: right;
+    height: 160px;
+    width: 20%;
+    background-color: #f4f6f9;
+
+}
+.invoice{
+    float:left;
+    border: 100px;
+    height: 50px;
+    width: 33%;
+    background-color: #eee;
+    text-align: center;
+    
+
+
+}
+
+.sales{
+    float:left;
+    border: 100px;
+    height: 50px;
+    width: 33%;
+    background-color: #eee;
+    text-align: center;
+}
+ 
+.inventory{
+    float:right;
+    border: 100px;
+    height: 50px;
+    width: 34%;
+    background-color: #eee;
+    text-align: center;
+}
+
+.invoice_form{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: right; 
+}
+
+td{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+th{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.error1{
+    color: red;
+    font-size: large;
+    padding-left: 250px;
+    padding-top: 300px;
+    display: inline-block;
+}
