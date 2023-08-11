@@ -33,32 +33,11 @@ h2{
     background-color: #f4f6f9;
 
 }
-.invoice{
+.link_left{
     float:left;
     border: 100px;
     height: 50px;
     width: 33%;
-    background-color: #eee;
-    text-align: center;
-    
-
-
-}
-
-.sales{
-    float:left;
-    border: 100px;
-    height: 50px;
-    width: 33%;
-    background-color: #eee;
-    text-align: center;
-}
- 
-.inventory{
-    float:right;
-    border: 100px;
-    height: 50px;
-    width: 34%;
     background-color: #eee;
     text-align: center;
 }
@@ -86,3 +65,9 @@ th{
     padding-top: 300px;
     display: inline-block;
 }
+
+.search{
+    height: 100px;
+    width: 100%;
+}
+

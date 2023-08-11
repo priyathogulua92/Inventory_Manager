@@ -26,16 +26,16 @@
       </div>
     </div>
     <hr />
-    <div class="invoice">
-      <a href="/invoice"><h2>INVOICE</h2></a>
+    <div class="link_left">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
     </div>
 
-    <div class="sales">
+    <div class="link_left">
       <a href="/sales"><h2>SALES</h2></a>
     </div>
 
-    <div class="inventory">
-      <a href="/inventory"><h2>INVENTORY</h2></a>
+    <div class="link_left">
+      <a href="/invoice"><h2>INVOICE</h2></a>
     </div>
     <hr />
     <div>
@@ -44,16 +44,16 @@
           {% csrf_token %}
           <h3 class="page-header text-primary text-center">Search Inventry</h3>
           <div class="form-group">
-            <label>BRAND</label>
-            <input type="text" class="form-control" name="BRAND" />
+            <label>Brand</label>
+            <input type="text" class="form-control" name="brand" />
           </div>
           <div class="form-group">
-            <label>PRODUCT</label>
-            <input type="text" class="form-control" name="PRODUCT" />
+            <label>Product</label>
+            <input type="text" class="form-control" name="product" />
           </div>
           <div class="form-group">
-            <label>MODEL</label>
-            <input type="text" class="form-control" name="MODEL" />
+            <label>Model</label>
+            <input type="text" class="form-control" name="model" />
           </div>
           <div class="form-group pull-right">
             <input type="submit" value="Search" class="btn btn-primary" />
@@ -64,19 +64,19 @@
     </div>
     <div>
       <div class="col-md-7">
-        {% if inventoryData %}
+        {% if inventory_list %}
         <h3 class="page-header text-primary text-center">Inventory List</h3>
         <table class="'table table-bordered">
           <thead>
             <tr>
-              <th><h4>BRAND</h4></th>
-              <th><h4>PRODUCT</h4></th>
-              <th><h4>MODEL</h4></th>
-              <th><h4>PRICE</h4></th>
-              <th><h4>QUANTITY</h4></th>
+              <th><h4>Brand</h4></th>
+              <th><h4>Product</h4></th>
+              <th><h4>Model</h4></th>
+              <th><h4>Price</h4></th>
+              <th><h4>Quantity</h4></th>
             </tr>
           </thead>
-          {% for data in inventoryData %}
+          {% for data in inventory_list %}
           <tbody>
             <tr>
               <td>{{data.brand}}</td>

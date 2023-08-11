@@ -25,18 +25,40 @@
       </div>
     </div>
     <hr />
-    <div class="invoice">
-      <a href="/invoice"><h2>INVOICE</h2></a>
+    <div class="link_left">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
     </div>
 
-    <div class="sales">
+    <div class="link_left">
       <a href="/sales"><h2>SALES</h2></a>
     </div>
 
-    <div class="inventory">
-      <a href="/inventory"><h2>INVENTORY</h2></a>
+    <div class="link_left">
+      <a href="/invoice"><h2>INVOICE</h2></a>
     </div>
     <hr />
+    <div>
+      <div class="search">
+        <h3>Search Sales</h3>
+        <form method="GET" autocomplete="on">
+          {% csrf_token %}
+          <div class="pull-left">
+            <label>Customer Name</label>
+            <input type="text" name="cust_name" />
+            <label>Date</label>
+            <input type="date" name="date" />
+            <label>Brand</label>
+            <input type="text" name="brand" />
+            <label>Product</label>
+            <input type="text" name="product" />
+            <label>Model</label>
+            <input type="text" name="model" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger" />
+          </div>
+        </form>
+      </div>
+    </div>
     <div>
       <div class="col-md-offset-0 col-md-3">
         <form method="post" autocomplete="on">
@@ -47,7 +69,7 @@
             <input
               type="text"
               class="form-control"
-              name="Cust_name"
+              name="cust_name"
               maxlenght="50"
             />
           </div>
@@ -56,16 +78,16 @@
             <input
               type="date"
               class="form-control"
-              name="Date"
+              name="date"
               maxlenght="10"
             />
           </div>
           <div class="form-group">
-            <label>Brand Name</label>
+            <label>Brand</label>
             <input
               type="text"
               class="form-control"
-              name="Brand_name"
+              name="brand"
               maxlenght="20"
             />
           </div>
@@ -74,16 +96,16 @@
             <input
               type="text"
               class="form-control"
-              name="Product"
+              name="product"
               maxlenght="20"
             />
           </div>
           <div class="form-group">
-            <label>Model Name</label>
+            <label>Model</label>
             <input
               type="text"
               class="form-control"
-              name="Model_name"
+              name="model"
               maxlenght="20"
             />
           </div>
@@ -92,7 +114,7 @@
             <input
               type="text"
               class="form-control"
-              name="Price"
+              name="price"
               maxlenght="5"
             />
           </div>
@@ -101,7 +123,7 @@
             <input
               type="text"
               class="form-control"
-              name="Quantity"
+              name="quantity"
               maxlenght="2"
             />
           </div>
@@ -122,14 +144,14 @@
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th><h4>CUSTOMER_NAME</h4></th>
-              <th><h4>DATE</h4></th>
-              <th><h4>BRAND_NAME</h4></th>
-              <th><h4>PRODUCT</h4></th>
-              <th><h4>MODEL_NAME</h4></th>
-              <th><h4>PRICE</h4></th>
-              <th><h4>QUANTITY</h4></th>
-              <th><h4>AMOUNT</h4></th>
+              <th><h4>Customer_name</h4></th>
+              <th><h4>Date</h4></th>
+              <th><h4>Brand</h4></th>
+              <th><h4>Product</h4></th>
+              <th><h4>Model</h4></th>
+              <th><h4>Price</h4></th>
+              <th><h4>Quantity</h4></th>
+              <th><h4>Amount</h4></th>
             </tr>
           </thead>
           {% for instance in sales_list %}
@@ -137,9 +159,9 @@
             <tr>
               <td>{{instance.customer_name}}</td>
               <td>{{instance.date}}</td>
-              <td>{{instance.brand_name}}</td>
+              <td>{{instance.brand}}</td>
               <td>{{instance.product}}</td>
-              <td>{{instance.model_Name}}</td>
+              <td>{{instance.model}}</td>
               <td>{{instance.price}}</td>
               <td>{{instance.quantity}}</td>
               <td>{{instance.amount}}</td>

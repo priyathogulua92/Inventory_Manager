@@ -26,54 +26,78 @@
       </div>
     </div>
     <hr />
-    <div class="invoice">
-      <a href="/invoice"><h2>INVOICE</h2></a>
+    <div class="link_left">
+      <a href="/inventory"><h2>INVENTORY</h2></a>
     </div>
 
-    <div class="sales">
+    <div class="link_left">
       <a href="/sales"><h2>SALES</h2></a>
     </div>
 
-    <div class="inventory">
-      <a href="/inventory"><h2>INVENTORY</h2></a>
+    <div class="link_left">
+      <a href="/invoice"><h2>INVOICE</h2></a>
     </div>
     <hr />
+    <div>
+      <div class="search">
+        <h3>Search Invoice</h3>
+        <form method="GET" autocomplete="on">
+          {% csrf_token %}
+          <div class="pull-right">
+            <label>Company Name</label>
+            <input type="text" name="company_name" />
+            <label>Bill Number</label>
+            <input type="text" name="bill_number" />
+            <label>Date</label>
+            <input type="date" name="date" />
+            <label>Brand</label>
+            <input type="text" name="brand" />
+            <label>Product</label>
+            <input type="text" name="product" />
+            <label>Model</label>
+            <input type="text" name="model" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <input type="reset" value="Clear" class="btn btn-danger" />
+          </div>
+        </form>
+      </div>
+    </div>
     <div>
       <div class="col-md-offset-0 col-md-3">
         <form action="/invoice/" method="POST" autocomplete="on">
           {% csrf_token %}
           <h3 class="page-header text-primary text-center">Add Invoice</h3>
           <div class="form-group">
-            <label>COMPANY_NAME</label>
-            <input type="text" class="form-control" name="COMPANY_NAME" />
+            <label>Company Name</label>
+            <input type="text" class="form-control" name="company_name" />
           </div>
           <div class="form-group">
-            <label>BILL_NUMBER</label>
-            <input type="text" class="form-control" name="BILL_NUMBER" />
+            <label>Bill Number</label>
+            <input type="text" class="form-control" name="bill_number" />
           </div>
           <div class="form-group">
-            <label>DATE</label>
-            <input type="date" class="form-control" name="DATE" />
+            <label>Date</label>
+            <input type="date" class="form-control" name="date" />
           </div>
           <div class="form-group">
-            <label>BRAND</label>
-            <input type="text" class="form-control" name="BRAND" />
+            <label>Brand</label>
+            <input type="text" class="form-control" name="brand" />
           </div>
           <div class="form-group">
-            <label>PRODUCT</label>
-            <input type="text" class="form-control" name="PRODUCT" />
+            <label>Product</label>
+            <input type="text" class="form-control" name="product" />
           </div>
           <div class="form-group">
-            <label>MODEL</label>
-            <input type="text" class="form-control" name="MODEL" />
+            <label>Model</label>
+            <input type="text" class="form-control" name="model" />
           </div>
           <div class="form-group">
-            <label>PRICE</label>
-            <input type="number" class="form-control" name="PRICE" />
+            <label>Price</label>
+            <input type="number" class="form-control" name="price" />
           </div>
           <div class="form-group">
-            <label>QUANTITY</label>
-            <input type="number" class="form-control" name="QUANTITY" />
+            <label>Quantity</label>
+            <input type="number" class="form-control" name="quantity" />
           </div>
           <div class="form-group pull-right">
             <input type="submit" value="Register" class="btn btn-primary" />
@@ -83,21 +107,24 @@
       </div>
     </div>
     <div>
+      {% if error %}
+      <div class="error1">ERROR: {{error}}</div>
+      {% endif %}
       <div class="col-md-7">
         {% if invoice_list %}
         <h3 class="page-header text-primary text-center">Invoice List</h3>
         <table class="'table table-bordered">
           <thead>
             <tr>
-              <th><h4>COMPANY_NAME</h4></th>
-              <th><h4>BILL_NUMBER</h4></th>
-              <th><h4>DATE</h4></th>
-              <th><h4>BRAND</h4></th>
-              <th><h4>PRODUCT</h4></th>
-              <th><h4>MODEL</h4></th>
-              <th><h4>PRICE</h4></th>
-              <th><h4>QUANTITY</h4></th>
-              <th><h4>AMOUNT</h4></th>
+              <th><h4>Company Name</h4></th>
+              <th><h4>Bill Number</h4></th>
+              <th><h4>Date</h4></th>
+              <th><h4>Brand</h4></th>
+              <th><h4>Product</h4></th>
+              <th><h4>Model</h4></th>
+              <th><h4>Price</h4></th>
+              <th><h4>Quantity</h4></th>
+              <th><h4>Amount</h4></th>
             </tr>
           </thead>
           {% for data in invoice_list %}

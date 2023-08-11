@@ -19,7 +19,7 @@ from stock_manager import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.invoice),
+    path('', views.inventory),
     path('invoice/', views.invoice),
     path('inventory/', views.inventory),
     path('sales/', views.sales),
