@@ -11,6 +11,12 @@
       href="{% static 'bootstrap/css/bootstrap.min.css' %}"
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'images/favicon.png' %}"
+    />
+    <script src="{% static 'script/script.js' %}" defer></script>
     <title>INVENTORY MANAGER</title>
   </head>
   <body>
@@ -67,43 +73,38 @@
         <form action="/invoice/" method="POST" autocomplete="on">
           {% csrf_token %}
           <h3 class="page-header text-primary text-center">Add Invoice</h3>
-          <div class="form-group">
-            <label>Company Name</label>
-            <input type="text" class="form-control" name="company_name" />
-          </div>
-          <div class="form-group">
-            <label>Bill Number</label>
-            <input type="text" class="form-control" name="bill_number" />
-          </div>
-          <div class="form-group">
-            <label>Date</label>
-            <input type="date" class="form-control" name="date" />
-          </div>
-          <div class="form-group">
-            <label>Brand</label>
-            <input type="text" class="form-control" name="brand" />
-          </div>
-          <div class="form-group">
-            <label>Product</label>
-            <input type="text" class="form-control" name="product" />
-          </div>
-          <div class="form-group">
-            <label>Model</label>
-            <input type="text" class="form-control" name="model" />
-          </div>
-          <div class="form-group">
-            <label>Price</label>
-            <input type="number" class="form-control" name="price" />
-          </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <input type="number" class="form-control" name="quantity" />
-          </div>
+          <label class="form-label">Company Name</label>
+          <input type="text" name="company_name" />
+          <br />
+          <label class="form-label">Bill Number</label>
+          <input type="text" name="bill_number" />
+          <br />
+          <label class="form-label">Date</label>
+          <input type="date" name="date" />
+          <br />
+          <label class="form-label">Brand</label>
+          <input type="text" name="brand" />
+          <br />
+          <label class="form-label">Product</label>
+          <input type="text" name="product" />
+          <br />
+          <label class="form-label">Model</label>
+          <input type="text" name="model" />
+          <br />
+          <label class="form-label">Price</label>
+          <input type="number" name="price" />
+          <br />
+          <label class="form-label">Quantity</label>
+          <input type="number" name="quantity" />
+          <div id="items_div"></div>
           <div class="form-group pull-right">
             <input type="submit" value="Register" class="btn btn-primary" />
             <input type="reset" value="Clear" class="btn btn-danger" />
           </div>
         </form>
+        <div class="form-group pull-left">
+          <button onclick="ADD_ITEMS()" class="btn">Add Items</button>
+        </div>
       </div>
     </div>
     <div>
@@ -125,20 +126,22 @@
               <th><h4>Price</h4></th>
               <th><h4>Quantity</h4></th>
               <th><h4>Amount</h4></th>
+              <th><h4>Total</h4></th>
             </tr>
           </thead>
           {% for data in invoice_list %}
           <tbody>
             <tr>
-              <td>{{data.company_name}}</td>
-              <td>{{data.bill_number}}</td>
-              <td>{{data.date}}</td>
+              <td>{{data.invoice_id.company_name}}</td>
+              <td>{{data.invoice_id.bill_number}}</td>
+              <td>{{data.invoice_id.date}}</td>
               <td>{{data.brand}}</td>
               <td>{{data.product}}</td>
               <td>{{data.model}}</td>
               <td>{{data.price}}</td>
               <td>{{data.quantity}}</td>
               <td>{{data.amount}}</td>
+              <td>{{data.invoice_id.total}}</td>
             </tr>
           </tbody>
           {% endfor %}

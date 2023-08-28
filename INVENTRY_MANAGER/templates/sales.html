@@ -10,6 +10,12 @@
       href="{% static 'bootstrap/css/bootstrap.min.css' %}"
     />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      rel="shortcut icon"
+      type="image/png"
+      href="{% static 'images/favicon.png' %}"
+    />
+    <script src="{% static 'script/script.js' %}" defer></script>
     <title>INVENTORY MANAGER</title>
   </head>
   <body>
@@ -64,74 +70,35 @@
         <form method="post" autocomplete="on">
           {%csrf_token%}
           <h3 class="page-header text-primary text-center">Add Sales</h3>
-          <div class="form-group">
-            <label>Customer Name</label>
-            <input
-              type="text"
-              class="form-control"
-              name="cust_name"
-              maxlenght="50"
-            />
-          </div>
-          <div class="form-group">
-            <label>Date</label>
-            <input
-              type="date"
-              class="form-control"
-              name="date"
-              maxlenght="10"
-            />
-          </div>
-          <div class="form-group">
-            <label>Brand</label>
-            <input
-              type="text"
-              class="form-control"
-              name="brand"
-              maxlenght="20"
-            />
-          </div>
-          <div class="form-group">
-            <label>Product</label>
-            <input
-              type="text"
-              class="form-control"
-              name="product"
-              maxlenght="20"
-            />
-          </div>
-          <div class="form-group">
-            <label>Model</label>
-            <input
-              type="text"
-              class="form-control"
-              name="model"
-              maxlenght="20"
-            />
-          </div>
-          <div class="form-group">
-            <label>Price</label>
-            <input
-              type="text"
-              class="form-control"
-              name="price"
-              maxlenght="5"
-            />
-          </div>
-          <div class="form-group">
-            <label>Quantity</label>
-            <input
-              type="text"
-              class="form-control"
-              name="quantity"
-              maxlenght="2"
-            />
-          </div>
+          <label class="form-label">Customer Name</label>
+          <input type="text" name="cust_name" maxlenght="50" />
+          <br />
+          <label class="form-label">Date</label>
+          <input type="date" name="date" maxlenght="10" />
+          <br />
+          <label class="form-label">Brand</label>
+          <input type="text" name="brand" maxlenght="20" />
+          <br />
+          <label class="form-label">Product</label>
+          <input type="text" name="product" maxlenght="20" />
+          <br />
+          <label class="form-label">Model</label>
+          <input type="text" name="model" maxlenght="20" />
+          <br />
+          <label class="form-label">Price</label>
+          <input type="text" name="price" maxlenght="5" />
+          <br />
+          <label class="form-label">Quantity</label>
+          <input type="text" name="quantity" maxlenght="2" />
+          <div id="items_div"></div>
           <div class="form-group pull-right">
             <input type="submit" value="Order" class="btn btn-primary" />
             <input type="reset" value="Clear" class="btn btn-danger" />
           </div>
         </form>
+        <div class="form-group pull-left">
+          <button onclick="ADD_ITEMS()" class="btn">Add Items</button>
+        </div>
       </div>
     </div>
     <div>
@@ -157,14 +124,15 @@
           {% for instance in sales_list %}
           <tbody>
             <tr>
-              <td>{{instance.customer_name}}</td>
-              <td>{{instance.date}}</td>
+              <td>{{instance.sales_id.customer_name}}</td>
+              <td>{{instance.sales_id.date}}</td>
               <td>{{instance.brand}}</td>
               <td>{{instance.product}}</td>
               <td>{{instance.model}}</td>
               <td>{{instance.price}}</td>
               <td>{{instance.quantity}}</td>
               <td>{{instance.amount}}</td>
+              <td>{{instance.sales_id.total}}</td>
             </tr>
           </tbody>
           {% endfor %}

@@ -33,6 +33,11 @@ h2{
     background-color: #f4f6f9;
 
 }
+
+.form-label{
+    width: 120px;
+}
+
 .link_left{
     float:left;
     border: 100px;
